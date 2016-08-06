@@ -1,0 +1,127 @@
+<style>
+body{
+
+}
+*{
+	font-family: sans-serif;
+}
+h1{
+	font-size:30px;
+}
+a{
+	text-decoration:none;
+	font-weight:400;
+	color:#3E7AAB;
+}
+a:hover{
+	text-decoration:none;
+	color:#1c5889;
+}
+h2{
+	margin-top:30px;
+	font-weight: 300;
+	padding-left:30px;
+}
+p{
+	font-size:20px;
+	padding-left:50px;
+	font-weight: 300;
+}
+ul{
+	padding-left:50px;
+	font-size:20px;
+	width:80%;
+	font-weight: 300;
+}
+li{
+	margin-top:15px;
+}
+hr{
+	margin-left:30px;
+}
+.keywords{
+	padding-left:30px;
+	font-size:24px;
+	font-weight: 300;
+	color:#cc2222;
+}
+</style>
+
+<h1>Programming in WLP4</h1>
+<hr>
+<h1>Augmenting a Grammar</h1>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/TopDownParsingHandout.pdf" target="_blank">Nomair's Handout (TopDownParsingHandout.pdf)</a>
+	</p>
+
+<hr>
+<h1>Top Down Parsing</h1>
+
+<div class="keywords">(Key words: First, Follow, Nullable, Predict table, LL1)</div>
+
+<h2>Algorithm</h2>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/TopDownParsingHandout.pdf" target="_blank">Nomair's Handout (TopDownParsingHandout.pdf)</a>
+	</p>
+
+<h2>Computing the Predict table given First, Follow and Nullable</h2>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/TopDownParsingHandout.pdf" target="_blank">Nomair's Handout (TopDownParsingHandout.pdf)</a>
+		<ul>
+			<li>The first set of a nonterminal is the set of all terminals that might start that rule in the parser's input. For example, if we have A&rarr;B,B&rarr;x, then the first set of A includes x.</li>
+			<li>The follow set of a nonterminal is the set of all terminals that might follow the rule in the parser's input. For example, if we have A&rarr;BC,B&rarr;x,C&rarr;y, the follow set of B includes yy.</li>
+			<li>A nonterminal is nullable if and only if it can derive &epsilon;.</li>
+		</ul>
+	</p>
+<h2>LL(1)</h2>
+	<p>
+		In the name LL(1), the first L stands for scanning the input from left to right, the second L stands for producing a leftmost derivation, and the 1 stands for using one input symbol of lookahead at each step to make parsing action decision
+	</p>
+<h2>When is a grammar LL(1)</h2>
+<p>
+		<a href="images/ll1.jpg" target="_blank">From Anthony Zhang's note</a>
+	</p>
+	<p>
+		<a href="images/ll12.png" target="_blank">From Normair's note</a>
+	</p>
+<hr>
+<h1>Bottom Up Parsing</h1>
+<h2>Algorithm</h2>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/BottomUpParsingHandout.pdf" target="_blank">Nomair's Handout (BottomUpParsingHandout.pdf)</a>
+	</p>
+<h2>LR(0) DFA</h2>
+<h2>SLR(1) DFA</h2>
+<hr>
+<h2>Context Sensitive Analysis</h2>
+<hr>
+<h2>Multiple variables/procedures</h2>
+<hr>
+<h2>Missing variable/procedure declarations</h2>
+<hr>
+<h2>Type Checking</h2>
+<hr>
+<h2>Code Generation</h2>
+<hr>
+<h2>Variables</h2>
+<hr>
+<h2>Frame Pointer</h2>
+<hr>
+<h2>Using the stack to store temporaries</h2>
+<hr>
+<h2>Runtime Environments</h2>
+<hr>
+<h2>Dealing with pointers</h2>
+<hr>
+<h2>Calling Procedures</h2>
+<hr>
+<h2>Compiler Optimizations</h2>
+<hr>
+<h2>Memory Management</h2>
+<hr>
+<h2>Free List Algorithm</h2>
+<hr>
+<h2>Binary Buddy Algorithm</h2>
+<hr>
+<h2>Automatic Garbage Collection (not covered by Nomair so not on Exam)</h2>
+<hr>
