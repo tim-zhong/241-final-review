@@ -1,4 +1,7 @@
 <style>
+.red{
+	color:#cc2222;
+}
 body{
 
 }
@@ -21,13 +24,14 @@ h2{
 	margin-top:30px;
 	font-weight: 300;
 	padding-left:30px;
+	text-decoration: underline;
 }
 p{
 	font-size:20px;
 	padding-left:50px;
 	font-weight: 300;
 }
-ul{
+ul, ol{
 	padding-left:50px;
 	font-size:20px;
 	width:80%;
@@ -48,6 +52,47 @@ hr{
 </style>
 
 <h1>Programming in WLP4</h1>
+<h2>Parts of a compiler</h2>
+<p>
+	<a href="images/compiler.png" target="_blank">From Lecture Note</a> <span class="red">(Very important)</span>
+</p>
+<p>
+	Recognition: yes/no S &isin; L(G)<br/>
+	Parsing: proving S &isin; L(G) by providing a derivation
+</p>
+<h2>CFG is a 4-tuple</h2>
+<p>
+	<ol>
+		<li>N: finite set of non-terminals</li>
+		<li>T: finite set of terminals</li>
+		<li>S: Start symbol, S &isin; N</li>
+		<li>P: finite set of non-terminals</li>
+	</ol>
+</p>
+<h2>Definition of derivation</h2>
+<p>
+	a sequence a0, a1, a2, ...... an<br/>
+	where a0 is the start symbol, an is a sequence of terminals and<br/>
+	ai &rArr; a(i+1)<br/>
+	<a href="images/example1.png" target="_blank">example of a derivation</a>
+</p>
+<h2>Derivation and Parse Tree</h2>
+<ol>
+	<li>A derivation specifies a unique parse tree.</li>
+	<li>A parse tree has many derivations.(can start from left subtree of right subtree, for example)</li>
+	<li>A input string has many derivations.</li>
+</ol>
+<h2>Leftmost/Rightmost derivation</h2>
+<p>
+	Always expand the leftmost/rightmost non-terminal.
+</p>
+<p>
+	A parse tree has a <span class="red">unique leftmost/rightmost derivation!</span>
+</p>
+<h2>Ambiguous grammer</h2>
+<p>
+	A grammer is ambiguous if there exist a string in the language for which there are <span class="red">multiple parse trees</span>, even when using the same derivation style. (i.e Leftmost/rightmost)
+</p>
 <hr>
 <h1>Augmenting a Grammar</h1>
 	<p>
@@ -78,11 +123,52 @@ hr{
 		In the name LL(1), the first L stands for scanning the input from left to right, the second L stands for producing a leftmost derivation, and the 1 stands for using one input symbol of lookahead at each step to make parsing action decision
 	</p>
 <h2>When is a grammar LL(1)</h2>
-<p>
+	<p>
 		<a href="images/ll1.jpg" target="_blank">From Anthony Zhang's note</a>
 	</p>
 	<p>
-		<a href="images/ll12.png" target="_blank">From Normair's note</a>
+		From Lecture Note:
+		<ol>
+			<li>A non-terminal that is nullable should not contain the same terminal in it's first and follow set. Example that's <span class="red">not</span> LL(1) grammer:
+				<ul>
+					<li>S &rarr; AB</li>
+					<li>A &rarr; &epsilon;</li>
+					<li>A &rarr; a</li>
+					<li>B &rarr; a</li>
+				</ul>
+			</li>
+			<li>
+				There should be only one way to derive &epsilon; for a nullable symbol. Example that's <span class="red">not</span> LL(1) grammer:
+				<ul>
+					<li>S &rarr; AB</li>
+					<li>A &rarr; &epsilon;</li>
+					<li>A &rarr; B</li>
+					<li>B &rarr; &epsilon;</li>
+					<li>B &rarr; a</li>
+				</ul>
+			</li>
+			<li>
+				The same non-terminal should not generate the same first terminal in more than one way. Example that's <span class="red">not</span> LL(1) grammer:
+				<ul>
+					<li>E &rarr; (E + T) | T</li>
+					<li>T &rarr; (T * F) | F</li>
+					<li>F &rarr; a | b | c</li>
+				</ul>
+				In this case, we have both<br>
+				E &rArr; E + T &rArr; T + T &rArr; F + T &rArr; <span class="red">a</span> + T <br>
+				E &rArr; T &rArr; F &rArr; <span class="red">a</span>
+			</li>
+			<li>
+				Left recursive grammers are never LL(1). Example that's <span class="red">not</span> LL(1) grammer:
+				<ul>
+					<li>E &rarr; (<span class="red">T</span> + E) | <span class="red">T</span></li>
+					<li>T &rarr; a</li>
+				</ul>
+				In this case, we have both<br>
+				E &rArr; T + E &rArr; <span class="red">a</span> + E <br>
+				E &rArr; T &rArr; <span class="red">a</span>
+			</li>
+		</ol>
 	</p>
 <hr>
 <h1>Bottom Up Parsing</h1>
@@ -122,6 +208,10 @@ hr{
 	</p>
 <hr>
 <h1>Context Sensitive Analysis</h1>
+<p>
+	<a href="images/csgintro.png" target="_blank">Introduction</a>
+</p>
+<div class="keywords">(Key words: Symbol table)</div>
 <h2>Multiple variables/procedures</h2>
 <h2>Missing variable/procedure declarations</h2>
 <h2>Type Checking</h2>
