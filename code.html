@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+.red{
+	color:#cc2222;
+}
+body{
+	margin:30px;
+}
+*{
+	font-family: sans-serif;
+}
+h1{
+	font-size:30px;
+}
+a{
+	text-decoration:none;
+	font-weight:400;
+	color:#3E7AAB;
+}
+a:hover{
+	text-decoration:none;
+	color:#1c5889;
+}
+h2{
+	margin-top:60px;
+	font-weight: 300;
+	padding-left:30px;
+}
+p{
+	font-size:20px;
+	padding-left:50px;
+	font-weight: 300;
+}
+ul, ol{
+	padding-left:50px;
+	font-size:20px;
+	width:80%;
+	font-weight: 300;
+}
+.comment{
+	color:#5c5c5c;
+}
+.text{
+	color:#0000aa;
+}
+pre{
+	border: none;
+	font-size:18px;
+	color:#cc0000;
+}
+li{
+	margin-top:15px;
+}
+hr{
+	margin-left:30px;
+}
+.keywords{
+	padding-left:30px;
+	font-size:24px;
+	font-weight: 300;
+}
+.well{
+	margin-bottom: 30px;
+}
+</style>
+
+<!-- 
+<div class="well well-lg">
+<pre>
+</pre>
+</div> 
+-->
+
+<span class="comment"></span>
+<span class="text"></span>
+
+
+<h2>
+factor &rarr; ID
+</h2>
+<div class="well well-lg">
+<pre>
+lw $3, offset_id($29)
+</pre>
+</div>
+<hr>
+
+<h2>
+expr<sub>1</sub> &rarr; expr<sub>2</sub> + term
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>2</sub>)
+push($3)
+code(term)
+pop($8)
+add $3, $3, $8
+</pre>
+</div>
+<hr>
+
+
+<h2>
+expr &rarr; term
+</h2>
+<div class="well well-lg">
+<pre>
+code(term)
+</pre>
+</div>
+<hr>
+
+<h2>
+statement &rarr; expr<sub>1</sub> BECOMES expr<sub>2</sub> SEMI
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>2</sub>)
+sw $3, offset_id($29) <span class="comment">// overwrite the old value of expr<sub>1</sub>
+</pre>
+</div>
+<hr>
+
+
+<h2>
+test &rarr; expr<sub>1</sub> < expr<sub>2</sub>
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>1</sub>)
+add $5, $3, $0
+code(expr<sub>2</sub>)
+slt $3, $5, $3 <span class="comment">// $3 has value 1 if condition is true</span>
+</pre>
+</div>
+<hr>
+
+<h2>
+test &rarr; expr<sub>1</sub> > expr<sub>2</sub>
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>2</sub>)
+add $5, $3, $0
+code(expr<sub>1</sub>)
+slt $3, $5, $3
+</pre>
+</div>
+<hr>
+
+<h2>
+test &rarr; expr<sub>1</sub> &ne; expr<sub>2</sub>
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>1</sub>)
+add $5, $3, $0
+code(expr<sub>2</sub>)
+slt $6, $3, $5
+slt $7, $5, $3
+add $3, $6, $7
+</pre>
+</div>
+<hr>
+
+
+<h2>
+test &rarr; expr<sub>1</sub> < expr<sub>2</sub>
+</h2>
+<div class="well well-lg">
+<pre>
+code(expr<sub>1</sub>)
+add $5, $3, $0
+code(expr<sub>2</sub>)
+slt $3, $5, $3 <span class="comment">// $3 has value 1 if condition is true</span>
+</pre>
+</div>
+<hr>
+
+
+<h2>Damn there are too many fucking rules! <br/>I give up so let's just review these shit from the fucking paper</h2>
