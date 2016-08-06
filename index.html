@@ -37,6 +37,14 @@ ul, ol{
 	width:80%;
 	font-weight: 300;
 }
+.comment{
+	color:#5c5c5c;
+}
+pre{
+	border: none;
+	font-size:18px;
+	color:#cc0000;
+}
 li{
 	margin-top:15px;
 }
@@ -240,15 +248,26 @@ hr{
 </p>
 <hr>
 <h1>Code Generation</h1>
-
-<h2>Variables</h2>
-<div class="well well-lg">
-;prologue
+<div class="keywords">Key words:
+<span class="label label-info">$29</span>
+<span class="label label-info">Offset Table</span>
 </div>
 
-<h2>Frame Pointer</h2>
-
-<h2>Using the stack to store temporaries</h2>
+<h2>Variables, Frame Pointer, Using the stack to store temporaries</h2>
+<div class="well well-lg">
+<pre>
+<span class="comment">;prologue</span>
+lis $4
+.word 4
+sub $29, $30, $4
+<span class="comment">;set up variables</span>
+sw $1, 0($29) <span class="comment">;push parameter 1;</span>
+sw $2, -4($29) <span class="comment">;push parameter 2;</span>
+</pre>
+</div>
+<p>
+Need to use a offset table to remember the offset of each variable
+</p>
 
 <h2>Runtime Environments</h2>
 
