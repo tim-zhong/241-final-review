@@ -86,19 +86,44 @@ hr{
 	</p>
 <hr>
 <h1>Bottom Up Parsing</h1>
+<div class="keywords">(Key words: Shift, Reduce, DFA, Stack, Conflictions)</div>
 <h2>Algorithm</h2>
 	<p>
 		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/BottomUpParsingHandout.pdf" target="_blank">Nomair's Handout (BottomUpParsingHandout.pdf)</a>
 	</p>
 <h2>LR(0) DFA</h2>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/BottomUpParsingHandout.pdf" target="_blank">Nomair's Handout (BottomUpParsingHandout.pdf)</a>
+	</p>
+	<p>
+		Can have conflictions (shilf-reduce, reduce-reduce), which can be resolve by using SLR(1)
+	</p>
 <h2>SLR(1) DFA</h2>
+	<p>
+		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/BottomUpParsingHandout.pdf" target="_blank">Nomair's Handout (BottomUpParsingHandout.pdf)</a>
+	</p>
+<h2>LR(1) --- Not in the list</h2>
+	<p>
+		<ul>
+			<li>
+				WLP4 uses LR1, which is more powerful than SLR(1) and LR(0)
+			</li>
+			<li>
+				A key thing to notice is that the Reduce function looks at the top of the state stack. If it contains reducible items,
+	the choice to reduce is made if the reduce is indicated when the next symbol is a.
+			</li>
+			<li>
+				<a href="images/lr1.png" target="_blank">Algorithm of LR(1)</a>
+			</li>
+			<li>
+				<a href="images/palgos.png" target="_blank">Relationship of parsing algorithms</a>
+			</li>
+		</ul>
+	</p>
 <hr>
-<h2>Context Sensitive Analysis</h2>
-<hr>
+<h1>Context Sensitive Analysis</h1>
 <h2>Multiple variables/procedures</h2>
-<hr>
 <h2>Missing variable/procedure declarations</h2>
-<hr>
 <h2>Type Checking</h2>
 <hr>
 <h2>Code Generation</h2>
