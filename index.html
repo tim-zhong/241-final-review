@@ -1,9 +1,10 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
 .red{
 	color:#cc2222;
 }
 body{
-
+	margin:30px;
 }
 *{
 	font-family: sans-serif;
@@ -24,7 +25,6 @@ h2{
 	margin-top:30px;
 	font-weight: 300;
 	padding-left:30px;
-	text-decoration: underline;
 }
 p{
 	font-size:20px;
@@ -47,14 +47,13 @@ hr{
 	padding-left:30px;
 	font-size:24px;
 	font-weight: 300;
-	color:#cc2222;
 }
 </style>
 
 <h1>Programming in WLP4</h1>
 <h2>Parts of a compiler</h2>
 <p>
-	<a href="images/compiler.png" target="_blank">From Lecture Note</a> <span class="red">(Very important)</span>
+	<a href="images/compiler.png" target="_blank">From Lecture Note</a> <span class="label label-danger">Very important</span>
 </p>
 <p>
 	Recognition: yes/no S &isin; L(G)<br/>
@@ -102,7 +101,13 @@ hr{
 <hr>
 <h1>Top Down Parsing</h1>
 
-<div class="keywords">(Key words: First, Follow, Nullable, Predict table, LL1)</div>
+<div class="keywords">Key words: 
+	<span class="label label-info">First</span>
+	<span class="label label-info">Follow</span>
+	<span class="label label-info">Nullable</span>
+	<span class="label label-info">Predict table</span>
+	<span class="label label-info">LL1</span>
+</div>
 
 <h2>Algorithm</h2>
 	<p>
@@ -172,7 +177,13 @@ hr{
 	</p>
 <hr>
 <h1>Bottom Up Parsing</h1>
-<div class="keywords">(Key words: Shift, Reduce, DFA, Stack, Conflictions)</div>
+<div class="keywords">Key words:
+<span class="label label-info">Shift</span>
+<span class="label label-info">Reduce</span>
+<span class="label label-info">DFA</span>
+<span class="label label-info">Stack</span>
+<span class="label label-info">Conflictions</span> 
+</div>
 <h2>Algorithm</h2>
 	<p>
 		<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/BottomUpParsingHandout.pdf" target="_blank">Nomair's Handout (BottomUpParsingHandout.pdf)</a>
@@ -211,23 +222,38 @@ hr{
 <p>
 	<a href="images/csgintro.png" target="_blank">Introduction</a>
 </p>
-<div class="keywords">(Key words: Symbol table)</div>
+<div class="keywords">Key words:
+<span class="label label-info">Symbol table</span>
+<span class="label label-info">Type errors</span>
+ </div>
 <h2>Multiple variables/procedures</h2>
+<p>
+	<ul>
+		<li>Make two passes, so the symbol table is ready after the first pass.</li>
+		<li>map< <span onmouseenter="this.innerHTML = '<span class=\'red\'>procedure name</span>';" onmouseleave="this.innerHTML = 'string';">string</span>, pair< <span onmouseenter="this.innerHTML = '<span class=\'red\'>parameters types</span>';" onmouseleave="this.innerHTML = 'vector< string >';">vector< string ></span>, map< <span onmouseenter="this.innerHTML = '<span class=\'red\'>variable name</span>';" onmouseleave="this.innerHTML = 'string';">string</span>, <span onmouseenter="this.innerHTML = '<span class=\'red\'>variable type</span>';" onmouseleave="this.innerHTML = 'string';">string</span>> > >
+	</ul>
+</p>
 <h2>Missing variable/procedure declarations</h2>
 <h2>Type Checking</h2>
+<p>
+	<a href="https://www.student.cs.uwaterloo.ca/~cs241/wlp4/typerules.pdf" target="_blank">Type Rules</a>
+</p>
 <hr>
-<h2>Code Generation</h2>
-<hr>
+<h1>Code Generation</h1>
+
 <h2>Variables</h2>
-<hr>
+<div class="well well-lg">
+;prologue
+</div>
+
 <h2>Frame Pointer</h2>
-<hr>
+
 <h2>Using the stack to store temporaries</h2>
-<hr>
+
 <h2>Runtime Environments</h2>
-<hr>
+
 <h2>Dealing with pointers</h2>
-<hr>
+
 <h2>Calling Procedures</h2>
 <hr>
 <h2>Compiler Optimizations</h2>
