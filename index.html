@@ -181,7 +181,7 @@ hr{
 				E &rArr; T &rArr; F &rArr; <span class="red">a</span>
 			</li>
 			<li>
-				Left recursive grammers are never LL(1). Example that's <span class="red">not</span> LL(1) grammer:
+				<a href="https://piazza.com/class/inj7ey5ec7k7g7?cid=532" target="_blank">Left recursive grammers</a> are never LL(1). Example that's <span class="red">not</span> LL(1) grammer:
 				<ul>
 					<li>E &rarr; (<span class="red">T</span> + E) | <span class="red">T</span></li>
 					<li>T &rarr; a</li>
@@ -514,6 +514,12 @@ int fib(int n, int a){
 <hr>
 
 <h1>Pre-midterm</h1>
+<h2>Loader</h2>
+<p>
+	<a href="https://www.student.cs.uwaterloo.ca/~cs241/slides/LinkerHandout.pdf" target="_blank">Handout</a>
+</p>
+
+
 <h2>Regular Language</h2>
 <p>A language is regular if
 <ul>
@@ -547,6 +553,33 @@ int fib(int n, int a){
 <p>
 	<a href="images/nfatodfa.png" target="_blank">Exmaple from note</a>
 </p>
+
+<h2>Maximal Munch Algorithm</h2>
+<p>
+	<ol>
+		<li>
+			Start with a DFA for the language of tokens.
+		</li>
+		<li>Run the input program until you get stuck
+			<ol>
+				<li>
+					If at accepting state, good
+				</li>
+				<li>
+					Otherwise, <span class="red">backtrack the DFA</span> and rewind the input to the last seen accpet state
+				</li>
+				<li>
+				Otherwise, output error. (couldn't find the last accepting state)
+				</li>
+			</ol>
+		</li>
+		<li>
+			Emit token, reset state to start state.
+		</li>
+	</ol>
+</p>
+<p>Note: maximal munch Algorithm, aslo called greedy algorithm, is deterministic, but sometimes it won't find a tokenization.</p>
+
 <div id="footer">
 You've reached the end. <a onclick="window.scrollTo(0,0);">Back to the top</a>?
 </div>
