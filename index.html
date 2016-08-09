@@ -3,6 +3,9 @@
 .red{
 	color:#cc2222;
 }
+.green{
+	color:#229922;
+}
 body{
 	margin:30px;
 }
@@ -268,17 +271,191 @@ sw $2, -4($29) <span class="comment">;push parameter 2;</span>
 <p>
 Need to use a offset table to remember the offset of each variable
 </p>
+<p>
+	<a href="code.html" target="_blank"><button class="btn btn-warning">Code for each rule</button></a>
+</p>
+<p>
+	<span class="red">Note: </span>Don't use beq or bne to jump to labels, becuse addresses are unsigned and can be big! Use jr instead, see below
+<div class="well well-lg">
+<pre>
+bne $3, $0, 3
+lis $10
+.word endLoop
+jr$10
+</pre>
+</div>
+</p>
 
 <h2>Runtime Environments</h2>
 
 <h2>Dealing with pointers</h2>
-
-<h2>Calling Procedures</h2>
 <p>
-	<a href="code.html" target="_blank"><button class="btn btn-warning">Code for each rule</button></a>
+	When doing <span class="red">comparisons</span>, use s
 </p>
+<h2>Calling Procedures</h2>
 <hr>
 <h1>Compiler Optimizations</h1>
+	<h2>Constant Folding</h2>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre>
+<span class="comment">;expr 1 + 2</span>
+code(1)
+push($3)
+code(2)
+pop($8)
+add $3, $8, $3
+</pre>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre class="green">
+<span class="comment">;expr 1 + 2</span>
+lis $3
+.word 3
+</pre>
+			</div>
+		</div>
+	</div>
+
+	<h2>Constant Propagation</h2>
+	<p>
+	Replace the use of a variable with a constant value
+	</p>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre>
+<span class="comment">;int x = 1; ... return x + x</span>
+lw, -12($29)
+push($3)
+lw $3, -12($29)
+pop($8)
+add $3, $8, $3
+</pre>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre class="green">
+<span class="comment">;int x = 1; ... return x + x</span>
+<span class="comment">;1 + 1</span>
+lis $3
+.word 2
+</pre>
+			</div>
+		</div>
+	</div>
+
+
+
+	<h2>Common Subexpression Elimination</h2>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre>
+<span class="comment">;a + a</span>
+code(a)
+push($3)
+...
+...
+pop($8)
+...
+
+<span class="comment">;(a + b) * (a + b)</span>
+code(a)
+...
+...
+</pre>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre class="green">
+<span class="comment">;a + a</span>
+code(a)
+add $3, $3, $3
+
+<span class="comment">;(a + b) * (a + b)</span>
+code(a + b)
+mult $3, $3
+mflo $3
+</pre>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<h2>Dead Code Elimination</h2>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre>
+a = 10;
+if(a < 20){
+	...
+	...
+} else {
+...
+}
+</pre>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well well-lg">
+<pre class="green">
+a = 10;
+if(10 < 20){ 	<span class="comment">// constant propagation</span>
+	...
+	...
+} <span class="comment">else {
+(removed)
+}</span>
+</pre>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<h2>Register Allocation</h2>
+	<p>
+	In compiler optimization, register allocation is the process of assigning a large number of target program variables onto a small number of CPU registers.
+	</p>
+	<p>
+	In general words, <span class="red">keep variables that are used most often in registers</span>, so they can be accessed quickly.
+	</p>
+
+
+	<h2>Method Inlining</h2>
+	<p>
+	Replace a funciton call with the body of the function.
+	</p>
+	<p>
+		Useful when the calle is short. Doing this <span class="red">saves us from saving and restoring registers</span> between procedures.
+	</p>
+
+
+	<h2>Tail Recursion</h2>
+<pre>
+
+int fib(int n, int a){
+	if(n == 0) return a;
+	else return fib(n - 1, n * a); <span class="comment">// tail recurion</span>
+}
+
+</pre>
+	<p>
+		Reusing the current stack frame for the recursive call.
+	</p>
+</div>
+
+
 <hr>
 <h2>Memory Management</h2>
 <hr>
