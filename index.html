@@ -82,7 +82,7 @@ hr{
 		<li>N: finite set of non-terminals</li>
 		<li>T: finite set of terminals</li>
 		<li>S: Start symbol, S &isin; N</li>
-		<li>P: finite set of non-terminals</li>
+		<li>P: finite set of production rules</li>
 	</ol>
 </p>
 <h2>Definition of derivation</h2>
@@ -508,8 +508,45 @@ int fib(int n, int a){
 	<p>
 		<a href="https://piazza.com/class/inj7ey5ec7k7g7?cid=750" target="_blank">Book-keeping in Binary Buddy Algorithm</a>
 	</p>
+	<p>
+		Note: Merging is recursive!
+	</p>
 <hr>
 
+<h1>Pre-midterm</h1>
+<h2>Regular Language</h2>
+<p>A language is regular if
+<ul>
+	<li>
+		&exist; Regular expression for it, or &exist; &epsilon;-NFA for it, or
+	</li>
+	<li>
+		&exist; NFA for it, or &exist; DFA for it.
+	</li>
+</ul>
+</p>
+<h2>&epsilon;-NFA to NFA</h2>
+<p>
+<ol>
+<li>
+	Whenever you have a chain of &epsilon;-transitions, followed by a transition on a, add a new transition on symbol a
+</li>
+<li>
+	If a chain of &epsilon; transitions ends at an accept state, make all states in this chain accept states
+</li>
+<li>
+	Remove all &epsilon; transitions.
+</li>
+<li>
+	Remove all unreachable states.
+</li>
+</ol>
+</p>
+
+<h2> NFA &rarr; DFA</h2>
+<p>
+	<a href="images/nfatodfa.png" target="_blank">Exmaple from note</a>
+</p>
 <div id="footer">
 You've reached the end. <a onclick="window.scrollTo(0,0);">Back to the top</a>?
 </div>
