@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <style>
+#footer{
+	font-size:18px;
+	color:#6c6c6c;
+	font-weight: 300;
+	text-align: center;
+}
 .red{
 	color:#cc2222;
 }
@@ -186,6 +192,9 @@ hr{
 			</li>
 		</ol>
 	</p>
+
+	<h2>Factoring a non LL(1) Grammer</h2>
+	<p><a href="https://piazza.com/class/inj7ey5ec7k7g7?cid=819" target="_blank">Post on Piazza</a></p>
 <hr>
 <h1>Bottom Up Parsing</h1>
 <div class="keywords">Key words:
@@ -272,7 +281,7 @@ sw $2, -4($29) <span class="comment">;push parameter 2;</span>
 Need to use a offset table to remember the offset of each variable
 </p>
 <p>
-	<a href="code.html" target="_blank"><button class="btn btn-warning">Code for each rule</button></a>
+	<a href="code.html" target="_blank"><button class="btn btn-danger">Code for each rule</button></a>
 </p>
 <p>
 	<span class="red">Note: </span>Don't use beq or bne to jump to labels, becuse addresses are unsigned and can be big! Use jr instead, see below
@@ -457,11 +466,50 @@ int fib(int n, int a){
 
 
 <hr>
-<h2>Memory Management</h2>
+<h1>Memory Management</h1>
+<h2>Internal Fragmentation vs External Fragmentation</h2>
+	<p>
+		<ul><span class="red">Internal fragmentation</span> is the wasted space within each allocated block because of rounding up from the actual requested allocation to the allocation granularity.</ul>
+		<ul><span class="red">External fragmentation</span> is the various free spaced holes that are generated in either your memory or disk space.</ul>
+	</p>
 <hr>
 <h2>Free List Algorithm</h2>
+	<p>
+	Maintain a list of pointer to free blocks
+	</p>
+	<p>when allocate x bytes, <span class="red">(x + 4)</span> bytes are allocated, where the first four byte stores the integer x, aka the size of the block.
+	</p>
+	<p>
+	Since we allocate an extra word to store the size, when delete c, we get to address <span class="red">c[- 1]</span> to delete the pre-allocated (x + 4) bytes.
+	<p><span class="red">Fragmentation</span> may happen and we have three strategies:
+		<ol>
+		<li>
+			First fit.
+		</li>
+		<li>
+			Best fit (leaves the smallest hole).
+		</li>
+		<li>
+			Worst fit (leaves the biggest hole).
+		</li>
+		</ol>
+	</p>
 <hr>
 <h2>Binary Buddy Algorithm</h2>
+	<p>
+		Creates <span class="red">internal fragmentations</span>
+	</p>
+	<p>
+		Allocate blocks that are powers of 2
+	</p>
+	<p>
+		For example, when allocate 20 words, we need (20 + 1) = 21 words, (same as Free List Algorithm). Instead of allocating 21 words, we allocate 32 words. since 32 = 2<sup>4</sup>
+	</p>
+	<p>
+		<a href="https://piazza.com/class/inj7ey5ec7k7g7?cid=750" target="_blank">Book-keeping in Binary Buddy Algorithm</a>
+	</p>
 <hr>
-<h2>Automatic Garbage Collection (not covered by Nomair so not on Exam)</h2>
-<hr>
+
+<div id="footer">
+You've reached the end. <a onclick="window.scrollTo(0,0);">Back to the top</a>?
+</div>
